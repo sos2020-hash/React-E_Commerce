@@ -14,22 +14,30 @@ class ProductProvider extends Component {
   }
 
   setProducts = () => {
-    let temproducts = [];
+    let temProducts = [];
     storeProducts.forEach((item) => {
       const singleItem = { ...item };
-      temproducts = [...temproducts, singleItem];
+      temProducts = [...temProducts, singleItem];
     });
     this.setState(() => {
-      return { products: temproducts };
+      return { products: temProducts };
     });
   };
 
-  handleDetail = () => {
-    console.log("hello from detail");
+  getItem = (id) => {
+    const product = this.state.products.find((item) => item.id === id);
+    return product;
   };
 
-  addToCart = () => {
-    console.log("hello from add to cart");
+  handleDetail = (id) => {
+    const product = this.getItem();
+    this.setState(() => {
+      return { detailProduct: product };
+    });
+  };
+
+  addToCart = (id) => {
+    console.log(`hello from add to cart ${id}`);
   };
   render() {
     return (
